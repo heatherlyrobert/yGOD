@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2c"
-#define  YGOD_VER_TXT       "god-cross current markers looking good"
+#define  YGOD_VER_NUM       "3.2d"
+#define  YGOD_VER_TXT       "god-ball current markers looking good"
 
 
 
