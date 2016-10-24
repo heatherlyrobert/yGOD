@@ -1,0 +1,24 @@
+.TH yGOD 3 2010-mar "linux" "heatherly custom tools manual"
+
+.SH NAME
+yGOD \- consistent, complete god-eys-view services to opengl programs
+
+.SH SUMMARY
+yGOD is a standard set of functions to implement consistent, powerful, reliable,
+testable, and maintainable god-eye-view services to opengl applications.
+
+.SH SYNOPSIS
+.nf
+.B #include  <yGOD.h>
+
+.R  ---general-------------------------------------
+.sp
+.BI "int      yLOG_begin   (cchar *" "a_program" ", cchar " "a_location" ", cchar " "a_quiet" ");"
+.BI "void     yLOG_end     (void);"
+.BI "char     yLOG_version (void);"
+.BI "char     yLOG_time    (void);"
+
+.sp
+Add "-lyGOD" to the object linking.
+
+
