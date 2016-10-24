@@ -138,8 +138,9 @@ char
 yGOD_start (void)
 {
    /*> dl_godball   = yGOD__godball (12.0);                                           <*/
-   dl_godball   = yGOD__godball (100.0);
-   dl_godcross  = yGOD__godbox  ( 7.0);
+   /*> dl_godball   = yGOD__godball (100.0);                                          <*/
+   dl_godball   = yGOD__godball ( 10.0);
+   dl_godcross  = yGOD__godbox  ( 10.0);
    /*> dl_godcross  = yGOD__godcross( 7.0);                                           <*/
    dl_godgrid   = yGOD__godgrid ();
    /*> dl_hammer    = yGOD__hammer  ( 6.0);                                           <*/
@@ -550,6 +551,90 @@ yGOD_orient_xzy    (float a_x, float a_z, float a_y)
 }
 
 char
+yGOD_orient_NEW    (void)
+{
+   /*---(locals)--------------------------------*/
+   float    x_pos    = 0;
+   char      msg [200];
+   glPushMatrix(); {
+      /*---(get to the right place)----------------*/
+      glBindTexture   (GL_TEXTURE_2D, 0);
+      glPolygonMode   (GL_FRONT_AND_BACK, GL_FILL);
+      /*---(draw background)-----------------------*/
+      /*> glColor4f (0.00f, 0.05f, 0.00f, 1.00f);                                     <*/
+      /*> glColor4f (1.00f, 0.05f, 0.00f, 1.00f);                                     <* 
+       *> glBegin(GL_POLYGON); {                                                      <* 
+       *>    glVertex3f(  15.00,   6.00, -10.00);                                     <* 
+       *>    glVertex3f(  15.00, -14.00, -10.00);                                     <* 
+       *>    glVertex3f(  -5.00, -14.00, -10.00);                                     <* 
+       *>    glVertex3f(  -5.00,   6.00, -10.00);                                     <* 
+       *> } glEnd();                                                                  <*/
+      /*> glLineWidth(2.0f);                                                          <* 
+       *> glColor4f  (0.00f, 0.25f, 0.00f, 0.50f);                                    <* 
+       *> glBegin(GL_LINE_STRIP); {                                                   <* 
+       *>    glVertex3f(  15.00,   6.00, -10.00);                                     <* 
+       *>    glVertex3f(  15.00, -14.00, -10.00);                                     <* 
+       *>    glVertex3f(  -5.00, -14.00, -10.00);                                     <* 
+       *>    glVertex3f(  -5.00,   6.00, -10.00);                                     <* 
+       *>    glVertex3f(  15.00,   6.00, -10.00);                                     <* 
+       *> } glEnd();                                                                  <*/
+      /*> glColor4f(1.0f, 1.0f, 1.0f, 1.0f);                                          <*/
+      /*---(draw god's balls)----------------------*/
+      glColor3f(0.0f, 0.5f, 0.0f);
+      /*> glCallList (dl_marker);                                                     <*/
+      glLineWidth(0.8f);
+      glCallList (dl_godball);
+      /*---(axis)-----------------------------------*/
+      glLineWidth(0.8f);
+      /*> glPointSize(5.0f);                                                          <*/
+      /*---(orbit)---------------------------------*/
+      /*> x_pos = (axis[GOD_ORBIT ].curr - axis[GOD_ORBIT ].min);                     <* 
+       *> glColor3f(0.0f, 0.3f, 1.0f);                                                <* 
+       *> glPushMatrix(); {                                                           <* 
+       *>    glTranslatef( -4.0f,  -7.0,   0.0);                                      <* 
+       *>    snprintf (msg, 50, "%03d", axis[GOD_ORBIT].curr);                        <* 
+       *>    yFONT_print (txf_sm,   2, YF_MIDRIG, msg);                               <* 
+       *> } glPopMatrix();                                                            <* 
+       *> glPushMatrix(); {                                                           <* 
+       *>    glRotatef(-90.0, 0.0f, 1.0f, 0.0f);                                      <* 
+       *>    glRotatef(x_pos  , 0.0f, 1.0f, 0.0f);                                    <* 
+       *>    glTranslatef(  6.0,   0.0,    0.0);                                      <* 
+       *>    glCallList(dl_pyramid);                                                  <* 
+       *> } glPopMatrix();                                                            <*/
+      /*---(vantage)------------------------------*/
+      /*> x_pos = (axis[GOD_VANTAGE ].curr - axis[GOD_VANTAGE ].min);                 <* 
+       *> glColor3f(1.0f, 0.0f, 0.0f);                                                <* 
+       *> glPushMatrix(); {                                                           <* 
+       *>    glTranslatef(  3.0f,   7.0,   0.0);                                      <* 
+       *>    snprintf (msg, 50, "%03d", axis[GOD_VANTAGE].curr);                      <* 
+       *>    yFONT_print (txf_sm,   2, YF_MIDLEF, msg);                               <* 
+       *> } glPopMatrix();                                                            <* 
+       *> glColor3f(0.7f, 0.0f, 0.0f);                                                <* 
+       *> glPushMatrix(); {                                                           <* 
+       *>    glRotatef( 90.0, 0.0f, 0.0f, 1.0f);                                      <* 
+       *>    glRotatef(-x_pos, 0.0f, 1.0f, 0.0f);                                     <* 
+       *>    glTranslatef(  6.0,   0.0,    0.0);                                      <* 
+       *>    glCallList(dl_marker);                                                   <* 
+       *> } glPopMatrix();                                                            <*/
+      /*---(spin)---------------------------------*/
+      /*> x_pos = (axis[GOD_SPIN    ].curr - axis[GOD_SPIN    ].min);                 <* 
+       *> glColor3f    ( 0.5f, 0.5f, 0.0f);                                           <* 
+       *> glPushMatrix(); {                                                           <* 
+       *>    glTranslatef(  3.0f,  -7.0,   0.0);                                      <* 
+       *>    snprintf (msg, 50, "%03d", axis[GOD_SPIN   ].curr);                      <* 
+       *>    yFONT_print (txf_sm,   2, YF_MIDLEF, msg);                               <* 
+       *> } glPopMatrix();                                                            <* 
+       *> glPushMatrix(); {                                                           <* 
+       *>    glRotatef    ( 90.0, 1.0f, 0.0f, 0.0f);                                  <* 
+       *>    glRotatef    (x_pos - 90.0, 0.0f, 1.0f, 0.0f);                           <* 
+       *>    glTranslatef (  6.0,  0.0,  0.0);                                        <* 
+       *>    glCallList   (dl_sphere);                                                <* 
+       *> } glPopMatrix();                                                            <*/
+   } glPopMatrix();
+   return 0;
+}
+
+char
 yGOD_orient_xzy_REAL (float a_x, float a_z, float a_y)
 {
    /*---(locals)--------------------------------*/
@@ -585,7 +670,7 @@ yGOD_orient_xzy_REAL (float a_x, float a_z, float a_y)
       glCallList (dl_marker);
       glLineWidth(0.8f);
       glCallList (dl_godball);
-      glCallList (dl_godball);
+      /*> glCallList (dl_godball);                                                    <*/
       /*---(axis)-----------------------------------*/
       glLineWidth(0.8f);
       /*> glPointSize(5.0f);                                                          <*/
@@ -595,7 +680,7 @@ yGOD_orient_xzy_REAL (float a_x, float a_z, float a_y)
       glPushMatrix(); {
          glTranslatef( -4.0f,  -7.0,   0.0);
          snprintf (msg, 50, "%03d", axis[GOD_ORBIT].curr);
-         /*> yFONT_print (txf_sm,   2, YF_MIDRIG, msg);                               <*/
+         yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
       } glPopMatrix();
       glPushMatrix(); {
          glRotatef(-90.0, 0.0f, 1.0f, 0.0f);
@@ -609,7 +694,7 @@ yGOD_orient_xzy_REAL (float a_x, float a_z, float a_y)
       glPushMatrix(); {
          glTranslatef(  3.0f,   7.0,   0.0);
          snprintf (msg, 50, "%03d", axis[GOD_VANTAGE].curr);
-         /*> yFONT_print (txf_sm,   2, YF_MIDLEF, msg);                               <*/
+         yFONT_print (txf_sm,   2, YF_MIDLEF, msg);
       } glPopMatrix();
       glColor3f(0.7f, 0.0f, 0.0f);
       glPushMatrix(); {
@@ -624,7 +709,7 @@ yGOD_orient_xzy_REAL (float a_x, float a_z, float a_y)
       glPushMatrix(); {
          glTranslatef(  3.0f,  -7.0,   0.0);
          snprintf (msg, 50, "%03d", axis[GOD_SPIN   ].curr);
-         /*> yFONT_print (txf_sm,   2, YF_MIDLEF, msg);                               <*/
+         yFONT_print (txf_sm,   2, YF_MIDLEF, msg);
       } glPopMatrix();
       glPushMatrix(); {
          glRotatef    ( 90.0, 1.0f, 0.0f, 0.0f);
@@ -639,7 +724,7 @@ yGOD_orient_xzy_REAL (float a_x, float a_z, float a_y)
 char
 yGOD_orient(void)
 {
-   yGOD_orient_xzy_REAL ( 0.0,   0.0,    0.0);
+   yGOD_orient_NEW  ();
    return 0;
 }
 
@@ -711,6 +796,84 @@ yGOD_locate_xzy    (float a_x, float a_z, float a_y)
       glVertex3f (  0.0f,  0.0f,     a);
    } glEnd();
    /*---(complete)-----------------------*/
+   return 0;
+}
+
+char
+yGOD_locate_NEW    (void)
+{
+   /*> return 0;                                                                      <*/
+   float    x_pos    = 0;
+   float    x_factor = 14.0 / 100.0;
+   char      msg [100];
+   /*> glTranslatef(-42.0f, -15.0f,  -100.0f);                                        <*/
+   glPushMatrix(); {
+      glBindTexture   (GL_TEXTURE_2D, 0);
+      glPolygonMode   (GL_FRONT_AND_BACK, GL_FILL);
+      /*---(draw background)-----------------------*/
+      /*> glColor4f (0.00f, 0.05f, 0.00f, 1.00f);                                     <* 
+       *> glBegin   (GL_POLYGON); {                                                   <* 
+       *>    glVertex3f ( -15.00,   6.00, -10.00);                                    <* 
+       *>    glVertex3f ( -15.00, -14.00, -10.00);                                    <* 
+       *>    glVertex3f (   5.00, -14.00, -10.00);                                    <* 
+       *>    glVertex3f (   5.00,   6.00, -10.00);                                    <* 
+       *> } glEnd();                                                                  <* 
+       *> glLineWidth(2.0f);                                                          <* 
+       *> glColor4f  (0.00f, 0.25f, 0.00f, 0.50f);                                    <* 
+       *> glBegin    (GL_LINE_STRIP); {                                               <* 
+       *>    glVertex3f ( -15.00,   6.00, -10.00);                                    <* 
+       *>    glVertex3f ( -15.00, -14.00, -10.00);                                    <* 
+       *>    glVertex3f (   5.00, -14.00, -10.00);                                    <* 
+       *>    glVertex3f (   5.00,   6.00, -10.00);                                    <* 
+       *>    glVertex3f ( -15.00,   6.00, -10.00);                                    <* 
+       *> } glEnd();                                                                  <* 
+       *> glColor4f(1.0f, 1.0f, 1.0f, 1.0f);                                          <* 
+       *> glColor4f(0.8f, 0.8f, 0.0f, 1.0f);                                          <*/
+      glLineWidth(0.8f);
+      /*---(write the label)-----------------------*/
+      glColor4f(0.8f, 0.8f, 0.0f, 1.0f);
+      /*---(cross)----------------------------------*/
+      glColor3f    (0.0f, 0.5f, 0.0f);
+      glCallList   (dl_godcross);
+      glLineWidth  (0.8f);
+      /*---(x location)-----------------------------*/
+      /*> glColor3f(0.0f, 0.3f, 1.0f);                                                                                           <* 
+       *> glPushMatrix(); {                                                                                                      <* 
+       *>    glTranslatef(  -9.0f,  -9.0,   0.0);                                                                                <* 
+       *>    snprintf (msg, 50, "%+4d", axis[GOD_CRAB ].curr - axis[GOD_CRAB ].start);                                           <* 
+       *>    /+> yFONT_print (txf_sm,   2, YF_BOTLEF, msg);                               <+/                                    <* 
+       *> } glPopMatrix();                                                                                                       <* 
+       *> glPushMatrix(); {                                                                                                      <* 
+       *>    x_pos = (axis[GOD_CRAB ].half - (axis[GOD_CRAB ].curr - axis[GOD_CRAB ].min)) / axis[GOD_BOOM ].scale * x_factor;   <* 
+       *>    glTranslatef(-x_pos,  -6.0,   0.0);                                                                                 <* 
+       *>    glCallList(dl_pyramid);                                                                                             <* 
+       *> } glPopMatrix();                                                                                                       <*/
+      /*---(y location)-----------------------------*/
+      /*> glColor3f(1.0f, 0.0f, 0.0f);                                                                                           <* 
+       *> glPushMatrix(); {                                                                                                      <* 
+       *>    glTranslatef(  4.0f,   7.0,   0.0);                                                                                 <* 
+       *>    snprintf (msg, 50, "%+4d", axis[GOD_BOOM ].curr - axis[GOD_BOOM ].start);                                           <* 
+       *>    /+> yFONT_print (txf_sm,   2, YF_TOPRIG, msg);                               <+/                                    <* 
+       *> } glPopMatrix();                                                                                                       <* 
+       *> glColor3f(0.7f, 0.0f, 0.0f);                                                                                           <* 
+       *> glPushMatrix(); {                                                                                                      <* 
+       *>    x_pos = (axis[GOD_BOOM ].half - (axis[GOD_BOOM ].curr - axis[GOD_BOOM ].min)) / axis[GOD_BOOM ].scale * x_factor;   <* 
+       *>    glTranslatef(   5.0,-x_pos,   0.0);                                                                                 <* 
+       *>    glCallList(dl_marker);                                                                                              <* 
+       *> } glPopMatrix();                                                                                                       <*/
+      /*---(z location)-----------------------------*/
+      /*> glColor3f(0.5f, 0.5f, 0.0f);                                                                                           <* 
+       *> glPushMatrix(); {                                                                                                      <* 
+       *>    glTranslatef( -3.0f,   1.5,   0.0);                                                                                 <* 
+       *>    snprintf (msg, 50, "%+4d", axis[GOD_DOLLY].curr - axis[GOD_DOLLY].start);                                           <* 
+       *>    /+> yFONT_print (txf_sm,   2, YF_TOPRIG, msg);                               <+/                                    <* 
+       *> } glPopMatrix();                                                                                                       <* 
+       *> glPushMatrix(); {                                                                                                      <* 
+       *>    x_pos = (axis[GOD_DOLLY].half - (axis[GOD_DOLLY].curr - axis[GOD_DOLLY].min)) / axis[GOD_DOLLY].scale * x_factor;   <* 
+       *>    glTranslatef(   0.0,   0.0,-x_pos);                                                                                 <* 
+       *>    glCallList(dl_sphere);                                                                                              <* 
+       *> } glPopMatrix();                                                                                                       <*/
+   } glPopMatrix();
    return 0;
 }
 
@@ -796,7 +959,7 @@ yGOD_locate_xzy_REAL (float a_x, float a_z, float a_y)
 char
 yGOD_locate(void)
 {
-   yGOD_locate_xzy (-44.0, -34.0, -100.0);
+   yGOD_locate_NEW ();
    return 0;
 }
 
@@ -812,6 +975,9 @@ yGOD__godball      (float a_side)
    float       d;
    float       r, x, y, z;
    GLuint      displist;
+   float       xz_min = -250, xz_max =   70;
+   float       xy_min = -180, xy_max =  180;
+   float       yz_min =  110, yz_max =  430;
    /*---(begin)--------------------------*/
    displist    = glGenLists(1);
    glNewList   (displist, GL_COMPILE);
@@ -821,65 +987,59 @@ yGOD__godball      (float a_side)
    /*---(xz plane)-----------------------*/
    glColor4f   (0.0, 0.5, 1.0, 1.0);
    glBegin     (GL_LINE_STRIP); {
-      for (d = -225; d <=  45; d += 5) {
+      for (d = xz_min; d <= xz_max; d += 5) {
          r    = d * DEG2RAD;
          x   =  a * cos(r);
          z   =  a * sin(r);
          glVertex3f ( x,   0.00f, z);
       }
    } glEnd     ();
-   glBegin     (GL_POINTS); {
-      for (d =    0; d <= 360; d +=  45) {
-         r    = d * DEG2RAD;
-         x   =  a * cos(r);
-         z   =  a * sin(r);
-         glVertex3f ( x,   0.00f, z);
-      }
-   } glEnd     ();
+   /*> glBegin     (GL_POINTS); {                                                     <* 
+    *>    for (d =    0; d <= 360; d +=  45) {                                        <* 
+    *>       r    = d * DEG2RAD;                                                      <* 
+    *>       x   =  a * cos(r);                                                       <* 
+    *>       z   =  a * sin(r);                                                       <* 
+    *>       glVertex3f ( x,   0.00f, z);                                             <* 
+    *>    }                                                                           <* 
+    *> } glEnd     ();                                                                <*/
    /*---(xy plane)-----------------------*/
+   a += a_side / 15.0;
    glColor4f   (1.0, 1.0, 0.0, 1.0);
    glBegin     (GL_LINE_STRIP); {
-      for (d = -155; d <=  -25; d += 5) {
+      for (d = xy_min; d <= xy_max; d += 5) {
          r = d * DEG2RAD;
          x   =  a * cos(r);
          y   =  a * sin(r);
          glVertex3f ( x,  y,  0.00f);
       }
    } glEnd     ();
-   glBegin     (GL_LINE_STRIP); {
-      for (d =   25; d <=  155; d += 5) {
-         r = d * DEG2RAD;
-         x   =  a * cos(r);
-         y   =  a * sin(r);
-         glVertex3f ( x,  y,  0.00f);
-      }
-   } glEnd     ();
-   glBegin     (GL_POINTS); {
-      for (d =   0; d <= 360; d += 45) {
-         r = d * DEG2RAD;
-         x   =  a * cos(r);
-         y   =  a * sin(r);
-         glVertex3f ( x,  y,  0.00f);
-      }
-   } glEnd     ();
+   /*> glBegin     (GL_POINTS); {                                                     <* 
+    *>    for (d =   0; d <= 360; d += 45) {                                          <* 
+    *>       r = d * DEG2RAD;                                                         <* 
+    *>       x   =  a * cos(r);                                                       <* 
+    *>       y   =  a * sin(r);                                                       <* 
+    *>       glVertex3f ( x,  y,  0.00f);                                             <* 
+    *>    }                                                                           <* 
+    *> } glEnd     ();                                                                <*/
    /*---(yz plane)-----------------------*/
+   a += a_side / 15.0;
    glColor4f   (1.0, 0.0, 0.0, 1.0);
    glBegin     (GL_LINE_STRIP); {
-      for (d = 135; d <= 405; d += 5) {
+      for (d = yz_min; d <= yz_max; d += 5) {
          r = d * DEG2RAD;
          y   =  a * cos(r);
          z   =  a * sin(r);
          glVertex3f ( 0.00f,  y,  z);
       }
    } glEnd     ();
-   glBegin     (GL_POINTS); {
-      for (d =   0; d <= 360; d += 45) {
-         r = d * DEG2RAD;
-         y   =  a * cos(r);
-         z   =  a * sin(r);
-         glVertex3f( 0.00f,  y,  z);
-      }
-   } glEnd     ();
+   /*> glBegin     (GL_POINTS); {                                                     <* 
+    *>    for (d =   0; d <= 360; d += 45) {                                          <* 
+    *>       r = d * DEG2RAD;                                                         <* 
+    *>       y   =  a * cos(r);                                                       <* 
+    *>       z   =  a * sin(r);                                                       <* 
+    *>       glVertex3f( 0.00f,  y,  z);                                              <* 
+    *>    }                                                                           <* 
+    *> } glEnd     ();                                                                <*/
    /*---(end)-------------------------------*/
    glEndList   ();
    /*---(complete)-------------------------*/
@@ -1157,92 +1317,146 @@ yGOD__godbox (float a_side)
 {
    /*---(locals)---------------------------*/
    float    a = a_side;
-   float    b = a / 2.0;
+   float    b = a / 1.7;
    float    c = b * 1.5;
    float    d = b * 0.7;
+   float    e = a / 8.0;
    /*---(begin)----------------------------*/
    GLuint displist = glGenLists(1);
    glNewList(displist, GL_COMPILE);
-   glLineWidth ( 3.0f);
+   glLineWidth ( 1.0f);
    glPointSize ( 6.0f);
    /*---(axis)-----------------------------*/
-   glColor4f(0.0, 0.5, 1.0, 0.2);
+   /*> glColor4f(0.0, 0.5, 1.0, 1.0);                                                 <* 
+    *> glBegin(GL_LINES); {                                                           <* 
+    *>    glVertex3f( -a,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f( -b,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  b,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  a,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  c,   0.0f,   d   );                                            <* 
+    *>    glVertex3f(  c,   0.0f,  -d   );                                            <* 
+    *>    glVertex3f( -c,   0.0f,   d   );                                            <* 
+    *>    glVertex3f( -c,   0.0f,  -d   );                                            <* 
+    *> } glEnd();                                                                     <*/
+   /*---(xz axis)------------------------*/
+   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+   glColor4f(0.0, 0.5, 1.0, 1.0);
+   /*> glEnable(GL_LINE_STIPPLE);                                                     <* 
+    *> glLineStipple(1, 0xA0A0);                                                      <*/
+   /*> glLineWidth ( 2.0f);                                                           <* 
+    *> glBegin(GL_POLYGON); {                                                         <* 
+    *>    glVertex3f(  -b,   0.0f,   -b);                                             <* 
+    *>    glVertex3f(   b,   0.0f,   -b);                                             <* 
+    *>    glVertex3f(   b,   0.0f,    b);                                             <* 
+    *>    glVertex3f(  -b,   0.0f,    b);                                             <* 
+    *> } glEnd();                                                                     <* 
+    *> glDisable(GL_LINE_STIPPLE);                                                    <*/
+   glLineWidth ( 2.0f);
    glBegin(GL_LINES); {
-      glVertex3f( -a,   0.0f,   0.0f);
-      glVertex3f( -b,   0.0f,   0.0f);
-      glVertex3f(  b,   0.0f,   0.0f);
-      glVertex3f(  a,   0.0f,   0.0f);
-      glVertex3f(  c,   0.0f,   d   );
-      glVertex3f(  c,   0.0f,  -d   );
-      glVertex3f( -c,   0.0f,   d   );
-      glVertex3f( -c,   0.0f,  -d   );
+      glVertex3f( 0.0f,   0.0f,    b * 1.3);
+      glVertex3f( 0.0f,   0.0f,   -b * 1.3);
    } glEnd();
-   glColor4f(1.0, 0.0, 0.0, 0.2);
+   /*---(xy axis)------------------------*/
+   glColor4f(1.0, 1.0, 0.0, 1.0);
+   /*> glEnable(GL_LINE_STIPPLE);                                                     <* 
+    *> glLineStipple(1, 0xA0A0);                                                      <*/
+   /*> glLineWidth ( 0.5f);                                                           <*/
+   /*> glBegin(GL_POLYGON); {                                                         <* 
+    *>    glVertex3f(  -b,     -b,  0.0);                                             <* 
+    *>    glVertex3f(   b,     -b,  0.0);                                             <* 
+    *>    glVertex3f(   b,      b,  0.0);                                             <* 
+    *>    glVertex3f(  -b,      b,  0.0);                                             <* 
+    *> } glEnd();                                                                     <* 
+    *> glDisable(GL_LINE_STIPPLE);                                                    <*/
+   glLineWidth ( 2.0f);
    glBegin(GL_LINES); {
-      glVertex3f(  0.0f,  -a,   0.0f);
-      glVertex3f(  0.0f,  -b,   0.0f);
-      glVertex3f(  0.0f,   b,   0.0f);
-      glVertex3f(  0.0f,   a,   0.0f);
-      glVertex3f(  d   ,   c,   0.0f);
-      glVertex3f( -d   ,   c,   0.0f);
-      glVertex3f(  d   ,  -c,   0.0f);
-      glVertex3f( -d   ,  -c,   0.0f);
+      glVertex3f(    b,    0.0,  0.0);
+      glVertex3f(   -b,    0.0,  0.0);
    } glEnd();
-   glColor4f(1.0, 1.0, 0.0, 0.2);
+   /*---(yz axis)------------------------*/
+   glColor4f(1.0, 0.0, 0.0, 1.0);
+   /*> glEnable(GL_LINE_STIPPLE);                                                     <* 
+    *> glLineStipple(1, 0xA0A0);                                                      <*/
+   /*> glLineWidth ( 0.5f);                                                           <*/
+   /*> glBegin(GL_POLYGON); {                                                         <* 
+    *>    glVertex3f( 0.0,     -b,   -b);                                             <* 
+    *>    glVertex3f( 0.0,     -b,    b);                                             <* 
+    *>    glVertex3f( 0.0,      b,    b);                                             <* 
+    *>    glVertex3f( 0.0,      b,   -b);                                             <* 
+    *> } glEnd();                                                                     <* 
+    *> glDisable(GL_LINE_STIPPLE);                                                    <*/
+   glLineWidth ( 2.0f);
    glBegin(GL_LINES); {
-      glVertex3f(  0.0f,   0.0f,  -a);
-      glVertex3f(  0.0f,   0.0f,  -b);
-      glVertex3f(  0.0f,   0.0f,   b);
-      glVertex3f(  0.0f,   0.0f,   a);
-      glVertex3f(  d   ,   0.0f,   c);
-      glVertex3f( -d   ,   0.0f,   c);
-      glVertex3f(  d   ,   0.0f,  -c);
-      glVertex3f( -d   ,   0.0f,  -c);
+      glVertex3f(  0.0,      b,  0.0);
+      glVertex3f(  0.0,     -b,  0.0);
    } glEnd();
+
+   /*> glColor4f(1.0, 0.0, 0.0, 1.0);                                                 <* 
+    *> glBegin(GL_LINES); {                                                           <* 
+    *>    glVertex3f(  0.0f,  -a,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,  -b,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,   b,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,   a,   0.0f);                                            <* 
+    *>    glVertex3f(  d   ,   c,   0.0f);                                            <* 
+    *>    glVertex3f( -d   ,   c,   0.0f);                                            <* 
+    *>    glVertex3f(  d   ,  -c,   0.0f);                                            <* 
+    *>    glVertex3f( -d   ,  -c,   0.0f);                                            <* 
+    *> } glEnd();                                                                     <*/
+   /*> glColor4f(1.0, 1.0, 0.0, 1.0);                                                 <* 
+    *> glBegin(GL_LINES); {                                                           <* 
+    *>    glVertex3f(  0.0f,   0.0f,  -a);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,  -b);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,   b);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,   a);                                            <* 
+    *>    glVertex3f(  d   ,   0.0f,   c);                                            <* 
+    *>    glVertex3f( -d   ,   0.0f,   c);                                            <* 
+    *>    glVertex3f(  d   ,   0.0f,  -c);                                            <* 
+    *>    glVertex3f( -d   ,   0.0f,  -c);                                            <* 
+    *> } glEnd();                                                                     <*/
    /*---(tickmarks)------------------------*/
    /*> glPointSize ( 8.0f);                                                           <*/
-   glColor4f(0.0, 0.5, 1.0, 0.2);
-   glBegin(GL_POINTS); {
-      glVertex3f( -c,   0.0f,   0.0f);
-      glVertex3f( -a,   0.0f,   0.0f);
-      glVertex3f( -c,   0.0f,   d   );
-      glVertex3f( -c,   0.0f,  -d   );
-      glVertex3f( -b,   0.0f,   0.0f);
-      glVertex3f(0.0,   0.0f,   0.0f);
-      glVertex3f(  b,   0.0f,   0.0f);
-      glVertex3f(  c,   0.0f,   d   );
-      glVertex3f(  c,   0.0f,  -d   );
-      glVertex3f(  a,   0.0f,   0.0f);
-      glVertex3f(  c,   0.0f,   0.0f);
-   } glEnd();
-   glColor4f(1.0, 0.0, 0.0, 0.2);
-   glBegin(GL_POINTS); {
-      glVertex3f(  0.0f,  -c,   0.0f);
-      glVertex3f(  0.0f,  -a,   0.0f);
-      glVertex3f(  d   ,  -c,   0.0f);
-      glVertex3f( -d   ,  -c,   0.0f);
-      glVertex3f(  0.0f,  -b,   0.0f);
-      glVertex3f(0.0,   0.0f,   0.0f);
-      glVertex3f(  0.0f,   b,   0.0f);
-      glVertex3f(  d   ,   c,   0.0f);
-      glVertex3f( -d   ,   c,   0.0f);
-      glVertex3f(  0.0f,   a,   0.0f);
-      glVertex3f(  0.0f,   c,   0.0f);
-   } glEnd();
-   glColor4f(1.0, 1.0, 0.0, 0.2);
-   glBegin(GL_POINTS); {
-      glVertex3f(  0.0f,   0.0f, -c );
-      glVertex3f(  0.0f,   0.0f,  -a);
-      glVertex3f(  d   ,   0.0f,  -c);
-      glVertex3f( -d   ,   0.0f,  -c);
-      glVertex3f(  0.0f,   0.0f,  -b);
-      glVertex3f(0.0,   0.0f,   0.0f);
-      glVertex3f(  0.0f,   0.0f,   b);
-      glVertex3f(  d   ,   0.0f,   c);
-      glVertex3f( -d   ,   0.0f,   c);
-      glVertex3f(  0.0f,   0.0f,   a);
-      glVertex3f(  0.0f,   0.0f,  c );
-   } glEnd();
+   /*> glColor4f(0.0, 0.5, 1.0, 0.2);                                                 <* 
+    *> glBegin(GL_POINTS); {                                                          <* 
+    *>    glVertex3f( -c,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f( -a,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f( -c,   0.0f,   d   );                                            <* 
+    *>    glVertex3f( -c,   0.0f,  -d   );                                            <* 
+    *>    glVertex3f( -b,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(0.0,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  b,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  c,   0.0f,   d   );                                            <* 
+    *>    glVertex3f(  c,   0.0f,  -d   );                                            <* 
+    *>    glVertex3f(  a,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  c,   0.0f,   0.0f);                                            <* 
+    *> } glEnd();                                                                     <* 
+    *> glColor4f(1.0, 0.0, 0.0, 0.2);                                                 <* 
+    *> glBegin(GL_POINTS); {                                                          <* 
+    *>    glVertex3f(  0.0f,  -c,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,  -a,   0.0f);                                            <* 
+    *>    glVertex3f(  d   ,  -c,   0.0f);                                            <* 
+    *>    glVertex3f( -d   ,  -c,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,  -b,   0.0f);                                            <* 
+    *>    glVertex3f(0.0,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,   b,   0.0f);                                            <* 
+    *>    glVertex3f(  d   ,   c,   0.0f);                                            <* 
+    *>    glVertex3f( -d   ,   c,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,   a,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,   c,   0.0f);                                            <* 
+    *> } glEnd();                                                                     <* 
+    *> glColor4f(1.0, 1.0, 0.0, 0.2);                                                 <* 
+    *> glBegin(GL_POINTS); {                                                          <* 
+    *>    glVertex3f(  0.0f,   0.0f, -c );                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,  -a);                                            <* 
+    *>    glVertex3f(  d   ,   0.0f,  -c);                                            <* 
+    *>    glVertex3f( -d   ,   0.0f,  -c);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,  -b);                                            <* 
+    *>    glVertex3f(0.0,   0.0f,   0.0f);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,   b);                                            <* 
+    *>    glVertex3f(  d   ,   0.0f,   c);                                            <* 
+    *>    glVertex3f( -d   ,   0.0f,   c);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,   a);                                            <* 
+    *>    glVertex3f(  0.0f,   0.0f,  c );                                            <* 
+    *> } glEnd();                                                                     <*/
    /*---(end)-------------------------------*/
    glEndList();
    /*---(complete)-------------------------*/

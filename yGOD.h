@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2a"
-#define  YGOD_VER_TXT       "add to github"
+#define  YGOD_VER_NUM       "3.2b"
+#define  YGOD_VER_TXT       "fixed god ball and god cross to be cleaner"
 
 
 
