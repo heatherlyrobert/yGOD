@@ -262,49 +262,63 @@ char
 yGOD_key (char a_key)
 {
    /*> printf("handling a <<%c>>\n", a_key);                                          <*/
+   /*---(x-axis linear)------------------*/
    switch (a_key) {
    case  12  :  yGOD__move (GOD_CRAB     , 'f');   break;
-   case  'l' :  yGOD__move (GOD_CRAB     , '+');   break;
    case  'L' :  yGOD__move (GOD_CRAB     , '>');   break;
+   case  'l' :  yGOD__move (GOD_CRAB     , '+');   break;
    case  'h' :  yGOD__move (GOD_CRAB     , '-');   break;
    case  'H' :  yGOD__move (GOD_CRAB     , '<');   break;
    case   8  :  yGOD__move (GOD_CRAB     , 'r');   break;
-
+   }
+   /*---(y-axis linear)------------------*/
+   switch (a_key) {
    case  11  :  yGOD__move (GOD_BOOM     , 'f');   break;
-   case  'k' :  yGOD__move (GOD_BOOM     , '+');   break;
    case  'K' :  yGOD__move (GOD_BOOM     , '>');   break;
+   case  'k' :  yGOD__move (GOD_BOOM     , '+');   break;
    case  'j' :  yGOD__move (GOD_BOOM     , '-');   break;
    case  'J' :  yGOD__move (GOD_BOOM     , '<');   break;
    case  10  :  yGOD__move (GOD_BOOM     , 'r');   break;
-
-   case  'o' :  yGOD__move (GOD_DOLLY    , '+');   break;
+   }
+   /*---(z-axis linear)------------------*/
+   switch (a_key) {
+   case  15  :  yGOD__move (GOD_DOLLY    , 'f');   break;   /* <Ctrl-o>     */
    case  'O' :  yGOD__move (GOD_DOLLY    , '>');   break;
-   case  15  :  yGOD__move (GOD_DOLLY    , 'f');   break;   /* <Ctrl-t>     */
+   case  'o' :  yGOD__move (GOD_DOLLY    , '+');   break;
    case  'i' :  yGOD__move (GOD_DOLLY    , '-');   break;
    case  'I' :  yGOD__move (GOD_DOLLY    , '<');   break;
-   case   9  :  yGOD__move (GOD_DOLLY    , 'r');   break;   /* <Ctrl-d>     */
-
+   case   9  :  yGOD__move (GOD_DOLLY    , 'r');   break;   /* <Ctrl-i>     */
+   }
+   /*---(x-axis pitch)-------------------*/
+   switch (a_key) {
+   case   1  :  yGOD__move (GOD_VANTAGE  , 'f');   break;   /* <Ctrl-a>     */
+   case  'A' :  yGOD__move (GOD_VANTAGE  , '>');   break;
+   case  'a' :  yGOD__move (GOD_VANTAGE  , '+');   break;
    case  'p' :  yGOD__move (GOD_VANTAGE  , '-');   break;
    case  'P' :  yGOD__move (GOD_VANTAGE  , '<');   break;
    case  16  :  yGOD__move (GOD_VANTAGE  , 'r');   break;   /* <Ctrl-p>     */
-   case  'v' :  yGOD__move (GOD_VANTAGE  , '+');   break;
-   case  'V' :  yGOD__move (GOD_VANTAGE  , '>');   break;
-   case  22  :  yGOD__move (GOD_VANTAGE  , 'f');   break;   /* <Ctrl-v>     */
-
-   case  'r' :  yGOD__move (GOD_SPIN     , '-');   break;
-   case  'R' :  yGOD__move (GOD_SPIN     , '<');   break;
-   case  18  :  yGOD__move (GOD_SPIN     , 'r');   break;   /* <Ctrl-r>     */
-   case  't' :  yGOD__move (GOD_SPIN     , '+');   break;
-   case  'T' :  yGOD__move (GOD_SPIN     , '>');   break;
-   case  20  :  yGOD__move (GOD_SPIN     , 'f');   break;   /* <Ctrl-s>     */
-
-   case  'y' :  yGOD__move (GOD_ORBIT    , '-');   break;
-   case  'Y' :  yGOD__move (GOD_ORBIT    , '<');   break;
+   }
+   /*---(y-axis yaw)---------------------*/
+   switch (a_key) {
    case  25  :  yGOD__move (GOD_ORBIT    , 'r');   break;   /* <Ctrl-y>     */
-   case  'c' :  yGOD__move (GOD_ORBIT    , '+');   break;
-   case  'C' :  yGOD__move (GOD_ORBIT    , '>');   break;
-   case   3  :  yGOD__move (GOD_ORBIT    , 'f');   break;   /* <Ctrl-o>     */
+   case  'Y' :  yGOD__move (GOD_ORBIT    , '<');   break;
+   case  'y' :  yGOD__move (GOD_ORBIT    , '-');   break;
+   case  't' :  yGOD__move (GOD_ORBIT    , '+');   break;
+   case  'T' :  yGOD__move (GOD_ORBIT    , '>');   break;
+   case  20  :  yGOD__move (GOD_ORBIT    , 'f');   break;   /* <Ctrl-t>     */
+   }
+   /*---(z-axis roll)--------------------*/
+   switch (a_key) {
+   case  18  :  yGOD__move (GOD_SPIN     , 'r');   break;   /* <Ctrl-r>     */
+   case  'R' :  yGOD__move (GOD_SPIN     , '<');   break;
+   case  'r' :  yGOD__move (GOD_SPIN     , '-');   break;
+   case  'w' :  yGOD__move (GOD_SPIN     , '+');   break;
+   case  'W' :  yGOD__move (GOD_SPIN     , '>');   break;
+   case  23  :  yGOD__move (GOD_SPIN     , 'f');   break;   /* <Ctrl-w>     */
 
+   }
+   /*---(x-axis yaw)---------------------*/
+   switch (a_key) {
    case  '0' :  yGOD__move (GOD_CRAB     , '0');
                 yGOD__move (GOD_BOOM     , '0');
                 yGOD__move (GOD_DOLLY    , '0');

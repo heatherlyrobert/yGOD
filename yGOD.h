@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2d"
-#define  YGOD_VER_TXT       "god-ball current markers looking good"
+#define  YGOD_VER_NUM       "3.2e"
+#define  YGOD_VER_TXT       "update rotation keys to match latest vi-keys"
 
 
 
