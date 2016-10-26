@@ -1003,7 +1003,7 @@ yGOD__godball      (float a_side, char a_ticks)
       glLineWidth (2.0f);
       glPointSize (4.0f);
       /*---(xz plane)-----------------------*/
-      glColor4f   (0.0, 1.0, 0.0, 1.0);
+      glColor4f   (0.0, 0.7, 0.0, 1.0);
       glBegin     (GL_LINE_STRIP); {
          for (d = xz_min; d <= xz_max; d += 5) {
             r    = d * DEG2RAD;
@@ -1024,7 +1024,7 @@ yGOD__godball      (float a_side, char a_ticks)
       }
       /*---(xy plane)-----------------------*/
       a += a_side / 15.0;
-      glColor4f   (1.0, 1.0, 0.0, 1.0);
+      glColor4f   (0.7, 0.7, 0.0, 1.0);
       glBegin     (GL_LINE_STRIP); {
          for (d = xy_min; d <= xy_max; d += 5) {
             r = d * DEG2RAD;
@@ -1045,7 +1045,7 @@ yGOD__godball      (float a_side, char a_ticks)
       }
       /*---(yz plane)-----------------------*/
       a += a_side / 15.0;
-      glColor4f   (1.0, 0.0, 0.0, 1.0);
+      glColor4f   (0.7, 0.0, 0.0, 1.0);
       glBegin     (GL_LINE_STRIP); {
          for (d = yz_min; d <= yz_max; d += 5) {
             r = d * DEG2RAD;
@@ -1352,7 +1352,7 @@ yGOD__godcross     (float a_side, char a_ticks)
       glPointSize ( 6.0f);
       /*---(z-axis)-------------------------*/
       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-      glColor4f(1.0, 1.0, 0.0, 1.0);
+      glColor4f(0.7, 0.7, 0.0, 1.0);
       /*---(baseline)----------*/
       glBegin(GL_LINES); {
          glVertex3f( 0.0f,   0.0f,    b * 1.5);
@@ -1366,7 +1366,7 @@ yGOD__godcross     (float a_side, char a_ticks)
          } glEnd     ();
       }
       /*---(xy axis)------------------------*/
-      glColor4f(1.0, 0.0, 0.0, 1.0);
+      glColor4f(0.7, 0.0, 0.0, 1.0);
       /*---(baseline)----------*/
       glBegin(GL_LINES); {
          glVertex3f(    b,    0.0,  0.0);
@@ -1380,7 +1380,7 @@ yGOD__godcross     (float a_side, char a_ticks)
          } glEnd     ();
       }
       /*---(yz axis)------------------------*/
-      glColor4f(0.0, 1.0, 0.0, 1.0);
+      glColor4f(0.0, 0.7, 0.0, 1.0);
       /*---(baseline)----------*/
       glBegin(GL_LINES); {
          glVertex3f(  0.0,      b,  0.0);
