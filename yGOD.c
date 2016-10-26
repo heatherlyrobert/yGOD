@@ -606,6 +606,11 @@ yGOD_orient_NEW    (void)
          glRotatef    (-180.0, 0.0f, 0.0f, 1.0f);
          glCallList   (dl_pyramid);
       } glPopMatrix();
+      glPushMatrix(); {
+         glTranslatef( -3.0f,  -7.0,   0.0);
+         snprintf (msg, 50, "%03d", (int) axis[GOD_ORBIT].curr);
+         yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
+      } glPopMatrix();
       /*---(vantage)------------------------------*/
       x_pos = (axis[GOD_VANTAGE ].curr - axis[GOD_VANTAGE ].min);
       glColor3f(1.0f, 0.0f, 0.0f);
@@ -615,6 +620,11 @@ yGOD_orient_NEW    (void)
          glRotatef    ( 90.0, 0.0f, 0.0f, 1.0f);
          glCallList(dl_pyramid);
       } glPopMatrix();
+      glPushMatrix(); {
+         glTranslatef(  2.0f,  -7.0,   0.0);
+         snprintf (msg, 50, "%03d", (int) axis[GOD_VANTAGE].curr);
+         yFONT_print (txf_sm,   2, YF_MIDLEF, msg);
+      } glPopMatrix();
       /*---(spin)---------------------------------*/
       x_pos = (axis[GOD_SPIN    ].curr - axis[GOD_SPIN    ].min);
       glColor3f    ( 1.0f, 1.0f, 0.0f);
@@ -623,6 +633,11 @@ yGOD_orient_NEW    (void)
          glTranslatef (  7.0,  0.0,  0.0);
          glRotatef    ( 90.0, 0.0f, 0.0f, 1.0f);
          glCallList   (dl_pyramid);
+      } glPopMatrix();
+      glPushMatrix(); {
+         glTranslatef( -3.0f,   7.0,   0.0);
+         snprintf (msg, 50, "%03d", (int) axis[GOD_SPIN   ].curr);
+         yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
       } glPopMatrix();
    } glPopMatrix();
    return 0;
