@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2j"
-#define  YGOD_VER_TXT       "fix alignment of orient labels"
+#define  YGOD_VER_NUM       "3.2k"
+#define  YGOD_VER_TXT       "align color and location for axis in orient and location"
 
 
 
