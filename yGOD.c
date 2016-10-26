@@ -598,49 +598,74 @@ yGOD_orient_NEW    (void)
       /*---(axis)-----------------------------------*/
       glLineWidth(0.8f);
       /*> glPointSize(5.0f);                                                          <*/
-      /*---(orbit)---------------------------------*/
+      /*===[yaw]==================================*/
       x_pos = (axis[GOD_ORBIT ].curr - axis[GOD_ORBIT ].min);
       glColor3f  (0.0f, 1.0f, 1.0f);
+      /*---(marker)--------------*/
       glPushMatrix(); {
          glRotatef    (-90 + x_pos  , 0.0f, 1.0f, 0.0f);
          glTranslatef (  5.0,   1.5,    0.0);
          glRotatef    (-180.0, 0.0f, 0.0f, 1.0f);
          glCallList   (dl_pyramid);
       } glPopMatrix();
+      /*---(label)---------------*/
       glPushMatrix(); {
-         glTranslatef( -1.5f,  -7.0,   0.0);
-         if (axis[GOD_ORBIT].curr >= 0) x_sign = '+';
-         else                           x_sign = '-';
-         snprintf (msg, 50, "%03d%c", (int) axis[GOD_ORBIT].curr, x_sign);
-         yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
+         /*---(sign)-------------*/
+         if (axis[GOD_ORBIT  ].curr >= 0) strcpy (msg, "+");
+         else                             strcpy (msg, "-");
+         glTranslatef ( -5.5f,  -4.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDRIG, msg);
+         /*---(value)------------*/
+         snprintf     (msg, 50, "%03d", abs ((int) axis[GOD_ORBIT].curr));
+         glTranslatef (  3.3f,  -2.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDRIG, msg);
+         /*---(done)-------------*/
       } glPopMatrix();
-      /*---(vantage)------------------------------*/
+      /*===[pitch]================================*/
       x_pos = (axis[GOD_VANTAGE ].curr - axis[GOD_VANTAGE ].min);
       glColor3f(1.0f, 0.0f, 0.0f);
+      /*---(marker)--------------*/
       glPushMatrix(); {
          glRotatef    (90 - x_pos, 1.0f, 0.0f, 0.0f);
          glTranslatef (  1.0,   6.0,    0.0);
          glRotatef    ( 90.0, 0.0f, 0.0f, 1.0f);
-         glCallList(dl_pyramid);
+         glCallList   (dl_pyramid);
       } glPopMatrix();
+      /*---(label)---------------*/
       glPushMatrix(); {
-         glTranslatef(  2.0f,  -7.0,   0.0);
-         snprintf (msg, 50, "%03d", (int) axis[GOD_VANTAGE].curr);
-         yFONT_print (txf_sm,   2, YF_MIDLEF, msg);
+         /*---(sign)-------------*/
+         if (axis[GOD_VANTAGE].curr >= 0) strcpy (msg, "+");
+         else                             strcpy (msg, "-");
+         glTranslatef (  5.5f,  -4.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDLEF, msg);
+         /*---(value)------------*/
+         glTranslatef ( -3.5f,  -2.5,   0.0);
+         snprintf     (msg, 50, "%03d", abs((int) axis[GOD_VANTAGE].curr));
+         yFONT_print  (txf_sm,   2, YF_MIDLEF, msg);
+         /*---(done)-------------*/
       } glPopMatrix();
-      /*---(spin)---------------------------------*/
+      /*===[roll]=================================*/
       x_pos = (axis[GOD_SPIN    ].curr - axis[GOD_SPIN    ].min);
       glColor3f    ( 1.0f, 1.0f, 0.0f);
+      /*---(marker)--------------*/
       glPushMatrix(); {
          glRotatef    (x_pos - 90.0, 0.0f, 0.0f, 1.0f);
          glTranslatef (  7.0,  0.0,  0.0);
          glRotatef    ( 90.0, 0.0f, 0.0f, 1.0f);
          glCallList   (dl_pyramid);
       } glPopMatrix();
+      /*---(label)---------------*/
       glPushMatrix(); {
-         glTranslatef( -3.0f,   7.0,   0.0);
-         snprintf (msg, 50, "%03d", (int) axis[GOD_SPIN   ].curr);
-         yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
+         /*---(sign)-------------*/
+         if (axis[GOD_SPIN   ].curr >= 0) strcpy (msg, "+");
+         else                             strcpy (msg, "-");
+         glTranslatef ( -5.5f,   4.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDRIG, msg);
+         /*---(value)------------*/
+         glTranslatef (  3.3f,   2.5,   0.0);
+         snprintf     (msg, 50, "%03d", abs((int) axis[GOD_SPIN   ].curr));
+         yFONT_print  (txf_sm,   2, YF_MIDRIG, msg);
+         /*---(done)-------------*/
       } glPopMatrix();
    } glPopMatrix();
    return 0;
