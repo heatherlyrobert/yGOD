@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2f"
-#define  YGOD_VER_TXT       "add text labels with rotation degrees to god ball"
+#define  YGOD_VER_NUM       "3.2g"
+#define  YGOD_VER_TXT       "add text labels with location pos to god cross"
 
 
 

@@ -566,6 +566,7 @@ yGOD_orient_NEW    (void)
    /*---(locals)--------------------------------*/
    float    x_pos    = 0;
    char      msg [200];
+   char        x_sign      = ' ';
    glPushMatrix(); {
       /*---(get to the right place)----------------*/
       glBindTexture   (GL_TEXTURE_2D, 0);
@@ -599,7 +600,7 @@ yGOD_orient_NEW    (void)
       /*> glPointSize(5.0f);                                                          <*/
       /*---(orbit)---------------------------------*/
       x_pos = (axis[GOD_ORBIT ].curr - axis[GOD_ORBIT ].min);
-      glColor3f  (0.0f, 0.3f, 1.0f);
+      glColor3f  (0.0f, 1.0f, 1.0f);
       glPushMatrix(); {
          glRotatef    (-90 + x_pos  , 0.0f, 1.0f, 0.0f);
          glTranslatef (  5.0,   1.5,    0.0);
@@ -607,8 +608,10 @@ yGOD_orient_NEW    (void)
          glCallList   (dl_pyramid);
       } glPopMatrix();
       glPushMatrix(); {
-         glTranslatef( -3.0f,  -7.0,   0.0);
-         snprintf (msg, 50, "%03d", (int) axis[GOD_ORBIT].curr);
+         glTranslatef( -1.5f,  -7.0,   0.0);
+         if (axis[GOD_ORBIT].curr >= 0) x_sign = '+';
+         else                           x_sign = '-';
+         snprintf (msg, 50, "%03d%c", (int) axis[GOD_ORBIT].curr, x_sign);
          yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
       } glPopMatrix();
       /*---(vantage)------------------------------*/
@@ -833,6 +836,11 @@ yGOD_locate_NEW    (void)
          glTranslatef (-x_pos,  -1.0,   0.0);
          glCallList   (dl_pyramid);
       } glPopMatrix();
+      glPushMatrix(); {
+         glTranslatef(  2.0f,   7.0,   0.0);
+         snprintf (msg, 50, "%03d", (int) axis[GOD_CRAB   ].curr);
+         yFONT_print (txf_sm,   2, YF_MIDLEF, msg);
+      } glPopMatrix();
       /*---(y location)-----------------------------*/
       glColor3f(1.0f, 0.0f, 0.0f);
       glPushMatrix(); {
@@ -841,13 +849,23 @@ yGOD_locate_NEW    (void)
          glRotatef    ( 90.0, 0.0f, 0.0f, 1.0f);
          glCallList   (dl_pyramid);
       } glPopMatrix();
+      glPushMatrix(); {
+         glTranslatef( -3.0f,  -7.0,   0.0);
+         snprintf (msg, 50, "%03d", (int) axis[GOD_BOOM   ].curr);
+         yFONT_print (txf_sm,   2, YF_MIDRIG, msg);
+      } glPopMatrix();
       /*---(z location)-----------------------------*/
-      glColor3f(0.0f, 0.5f, 1.0f);
+      glColor3f(0.0f, 1.0f, 1.0f);
       glPushMatrix(); {
          x_pos = (axis[GOD_DOLLY].half - (axis[GOD_DOLLY].curr - axis[GOD_DOLLY].min)) / axis[GOD_DOLLY].scale * x_factor;
          glTranslatef (   0.0,   1.0, -x_pos * 5.0);
          glRotatef    (180.0, 0.0f, 0.0f, 1.0f);
          glCallList   (dl_pyramid);
+      } glPopMatrix();
+      glPushMatrix(); {
+         glTranslatef(  2.0f,  -7.0,   0.0);
+         snprintf (msg, 50, "%03d", (int) axis[GOD_DOLLY  ].curr);
+         yFONT_print (txf_sm,   2, YF_MIDLEF, msg);
       } glPopMatrix();
    } glPopMatrix();
    return 0;
@@ -961,7 +979,7 @@ yGOD__godball      (float a_side, char a_ticks)
       glLineWidth (2.0f);
       glPointSize (4.0f);
       /*---(xz plane)-----------------------*/
-      glColor4f   (0.0, 0.5, 1.0, 1.0);
+      glColor4f   (0.0, 1.0, 1.0, 1.0);
       glBegin     (GL_LINE_STRIP); {
          for (d = xz_min; d <= xz_max; d += 5) {
             r    = d * DEG2RAD;
@@ -1310,7 +1328,7 @@ yGOD__godcross     (float a_side, char a_ticks)
       glPointSize ( 6.0f);
       /*---(xz axis)------------------------*/
       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-      glColor4f(0.0, 0.5, 1.0, 1.0);
+      glColor4f(0.0, 1.0, 1.0, 1.0);
       /*---(baseline)----------*/
       glBegin(GL_LINES); {
          glVertex3f( 0.0f,   0.0f,    b * 1.5);
