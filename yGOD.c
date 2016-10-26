@@ -589,12 +589,12 @@ yGOD_orient_NEW    (void)
          /*---(sign)-------------*/
          if (axis[GOD_ORBIT  ].curr >= 0) strcpy (x_msg, "+");
          else                             strcpy (x_msg, "-");
-         glTranslatef ( -5.5f,  -4.5,   0.0);
-         yFONT_print  (txf_sm,   2, YF_MIDRIG, x_msg);
+         glTranslatef ( -7.5f,  -4.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDLEF, x_msg);
          /*---(value)------------*/
          snprintf     (x_msg, 50, "%03d", abs ((int) axis[GOD_ORBIT].curr));
-         glTranslatef (  3.3f,  -2.5,   0.0);
-         yFONT_print  (txf_sm,   2, YF_MIDRIG, x_msg);
+         glTranslatef (  0.0f,  -2.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDLEF, x_msg);
          /*---(done)-------------*/
       } glPopMatrix();
       /*===[pitch]================================*/
@@ -612,12 +612,12 @@ yGOD_orient_NEW    (void)
          /*---(sign)-------------*/
          if (axis[GOD_VANTAGE].curr >= 0) strcpy (x_msg, "+");
          else                             strcpy (x_msg, "-");
-         glTranslatef (  5.5f,  -4.5,   0.0);
-         yFONT_print  (txf_sm,   2, YF_MIDLEF, x_msg);
+         glTranslatef (  7.5f,  -4.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDRIG, x_msg);
          /*---(value)------------*/
-         glTranslatef ( -3.5f,  -2.5,   0.0);
+         glTranslatef (  0.0f,  -2.5,   0.0);
          snprintf     (x_msg, 50, "%03d", abs((int) axis[GOD_VANTAGE].curr));
-         yFONT_print  (txf_sm,   2, YF_MIDLEF, x_msg);
+         yFONT_print  (txf_sm,   2, YF_MIDRIG, x_msg);
          /*---(done)-------------*/
       } glPopMatrix();
       /*===[roll]=================================*/
@@ -635,12 +635,12 @@ yGOD_orient_NEW    (void)
          /*---(sign)-------------*/
          if (axis[GOD_SPIN   ].curr >= 0) strcpy (x_msg, "+");
          else                             strcpy (x_msg, "-");
-         glTranslatef ( -5.5f,   4.5,   0.0);
-         yFONT_print  (txf_sm,   2, YF_MIDRIG, x_msg);
+         glTranslatef ( -7.5f,   4.5,   0.0);
+         yFONT_print  (txf_sm,   2, YF_MIDLEF, x_msg);
          /*---(value)------------*/
-         glTranslatef (  3.3f,   2.5,   0.0);
+         glTranslatef (  0.0f,   2.5,   0.0);
          snprintf     (x_msg, 50, "%03d", abs((int) axis[GOD_SPIN   ].curr));
-         yFONT_print  (txf_sm,   2, YF_MIDRIG, x_msg);
+         yFONT_print  (txf_sm,   2, YF_MIDLEF, x_msg);
          /*---(done)-------------*/
       } glPopMatrix();
    } glPopMatrix();
