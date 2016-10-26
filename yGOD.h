@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2l"
-#define  YGOD_VER_TXT       "darken axis colors to make markers standout more"
+#define  YGOD_VER_NUM       "3.2m"
+#define  YGOD_VER_TXT       "slightly move location markers to make them stand out"
 
 
 
