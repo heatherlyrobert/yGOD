@@ -136,8 +136,8 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2n"
-#define  YGOD_VER_TXT       "moved to make_program makefile enhancement"
+#define  YGOD_VER_NUM       "3.2o"
+#define  YGOD_VER_TXT       "fixed makefile, missed -lyFONT_debug"
 
 
 

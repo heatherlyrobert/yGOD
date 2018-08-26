@@ -292,8 +292,8 @@ yGOD_key (char a_key)
    /*---(x-axis pitch)-------------------*/
    switch (a_key) {
    case   1  :  yGOD__move (GOD_VANTAGE  , 'f');   break;   /* <Ctrl-a>     */
-   case  'A' :  yGOD__move (GOD_VANTAGE  , '>');   break;
-   case  'a' :  yGOD__move (GOD_VANTAGE  , '+');   break;
+   case  'V' :  yGOD__move (GOD_VANTAGE  , '>');   break;
+   case  'v' :  yGOD__move (GOD_VANTAGE  , '+');   break;
    case  'p' :  yGOD__move (GOD_VANTAGE  , '-');   break;
    case  'P' :  yGOD__move (GOD_VANTAGE  , '<');   break;
    case  16  :  yGOD__move (GOD_VANTAGE  , 'r');   break;   /* <Ctrl-p>     */
