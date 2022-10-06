@@ -8,7 +8,7 @@ NAME_BASE  = yGOD
 # additional standard and outside libraries
 LIB_STD    = -lX11 -lGL -lm
 # all heatherly libraries used, debug versions whenever available
-LIB_MINE   = -lyFONT_debug
+LIB_MINE   = -lyFONT_debug -lyCOLOR_debug
 # directory for production code, no trailing slash
 INST_DIR   = 
 

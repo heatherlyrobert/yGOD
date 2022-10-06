@@ -136,8 +136,6 @@
 #ifndef  YGOD
 #define  YGOD loaded
 
-#define  YGOD_VER_NUM       "3.2o"
-#define  YGOD_VER_TXT       "fixed makefile, missed -lyFONT_debug"
 
 
 
@@ -161,6 +159,7 @@ char      yGOD_end               (void);
 char      yGOD_axis              (char a_txt, double a_min, double a_max, double a_start, double a_step, double a_minor, double a_major);
 char      yGOD_key               (char a_key);
 
+char      yGOD_refresh           (void);
 
 
 
